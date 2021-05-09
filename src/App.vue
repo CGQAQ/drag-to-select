@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <DragSelect
+      question="一二三四五六七八九十"
+      @selectedChanged="selectedChanged"
+    />
+    <div>
+      <span v-for="select in selects" :key="select">{{ select }}</span>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DragSelect from "./components/DragSelect.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    DragSelect,
+  },
+  data() {
+    return {
+      selects: [],
+    };
+  },
+  methods: {
+    selectedChanged(selects) {
+      this.selects = selects.map(it => it.innerText);
+    },
+  },
+};
 </script>
 
 <style>
