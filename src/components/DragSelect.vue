@@ -20,9 +20,9 @@
 <script>
 export default {
   props: ["question"],
-  created() {
-    console.log(this.$refs);
-  },
+  // created() {
+  //   console.log(this.$refs);
+  // },
   data() {
     const div = document.createElement("div");
     div.classList.add("__CG_rect");
@@ -68,7 +68,6 @@ export default {
 
     mousedown(e) {
       if (!this.active) {
-        console.log("mousedown", e);
         this.startPosition = { x: e.offsetX, y: e.offsetY };
         this.div.style.left = `${this.startPosition.x}px`;
         this.div.style.top = `${this.startPosition.y}px`;
@@ -81,7 +80,6 @@ export default {
     },
     mousemove(e) {
       if (this.active) {
-        console.log("mousemove");
         const x = e.offsetX;
         const y = e.offsetY;
 
@@ -119,15 +117,14 @@ export default {
     },
 
     checkInside(x, y, w, h) {
-      console.log("check inside", x, y, w, h);
       this.selected = [];
       for (const char of this.chars) {
         const rect = char.rect;
         const ch = char.dom;
-        console.log("----------------------------");
-        console.log("ch", ch);
-        console.log(`${rect.left} < ${x} + ${w} && ${rect.top} < ${y + h}`);
-        console.log("----------------------------");
+        // console.log("----------------------------");
+        // console.log("ch", ch);
+        // console.log(`${rect.left} < ${x} + ${w} && ${rect.top} < ${y + h}`);
+        // console.log("----------------------------");
         if (
           // left && top
           (rect.left < x + w &&
@@ -162,7 +159,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     mouseup(e) {
       if (this.active) {
-        console.log("mouseup");
+        // console.log("mouseup");
         this.$refs.container.removeChild(this.div);
         this.fireEvent();
         this.reset();
@@ -171,7 +168,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     mouseleave(e) {
       if (this.active) {
-        console.log("mouseleave");
+        // console.log("mouseleave");
         this.$refs.container.removeChild(this.div);
         this.fireEvent();
         this.reset();
